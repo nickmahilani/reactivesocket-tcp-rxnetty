@@ -1,0 +1,26 @@
+language: java
+jdk:
+- oraclejdk8
+
+# force upgrade Java8 as per https://github.com/travis-ci/travis-ci/issues/4042 (fixes compilation issue)
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+sudo: false
+# as per http://blog.travis-ci.com/2014-12-17-faster-builds-with-container-based-infrastructure/
+
+# script for build and release via Travis to Bintray
+script: gradle/buildViaTravis.sh
+
+# cache between builds
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
+  
+env:
+  global:
+  - secure: mFR/hvdG7lqvoiwhuK/cVM15hRFQsuHByXV+NlrqhtrLsFKV4qUCwaYz1/aIa/nxB52nljd4AbOfoGIhlNh55t3FoeuUjLIXaU2cZto+u9VxgUQGKwdxHJZdkip13Z/b+tRRYMKlzLOlsSTGKu5UO/jTkhMlCpH7ggH3AEPy+v5UQrhhgN0MQDsid7xqBmmqwWB20Avm9vtg6SPKCFW0e4oKraiQroQpLpO3rYIqe2wrX97F6RO+56omdQR6RJsPH5NEyWFlQsPt/R1h2Ulpr4OPADUDhn3pn9uhy8a+p5jnf2xgMCGMNIXG5//4YkAAcE2aGm5IzDbCy3a/Z2Qp2dkITF3yIMFeSdIm4Xql0xzGukHDvR5HKk3zh1Ikr1qsPCENvPbtyeF3xChXaZIF4pBOP6e8N6a2KCmS6lKaEvgnXMA4sWu52FRSHDff7+Fp73+fOGdJO2Lh4MlHgMT8E/rmafg2JZtNICoztReXsH4sNoyziyEAbcr+/e/+qWcnK/msdvCvtZ1UjYZ295GRJWYOAf6Pc+OAAmsd/uP5HcqnexwG6Df4maFCGUx3PFLvVfRIa4ER2b0OkSY3LDRzYDue1LVFl0Wi95og0F3sMgZLdhICV//EJWg8yhwAmikZue0r++saPiW+0kWoQKYq2zLHz2mT6BbGMgo9UCW4Kok=
+  - secure: UXsUJ/yPttxvdamtAXWZoo7V7v5Z86JJCoM7rbIU5MmYsULIF9YirM0rIM43jVUtpB1/ASQDgSC+KWecPagIpNNL6gMHZPrecoJU9XQIzQs9n93D48WBYqC4O8DByU+f+h+LnplFl/nkAxv+VKPvyM8QjzON4291uNCL3VG7/wlassMdBnPJwoe1oIbWP8sPaeiLcFtuvbGVPtxW83zlyKMwQORM+g3df41/TJPLwtM4v6vNZ4KAq5HtOFODBS7hq7pz1/6CXoIW0IEoQM+ywres+8Nkwl4aDt92z4YX8bI2Kfh4es8z4GDLPrup+9E+odEUJ9KwMhWPz89X9ckOD9c46sJ3FvfhNtZIpBilU7bd8KcAbWRgokXhI6QO3KH2UAYf4C/0NkaUh2gDqoU8Mfx0YwH4+JG3HfE2wrXzQdKzaGToDwAhSqGUHaiBi6fSRliI+IrKnebq9cUIFNAG8QYSn9FbNjEAFNhtUL460LWCgI0W7WNFmVQyAN2PuSMixuhEv0VKaCmI/y6JS16rf7J3u0k74SSOT90iEM7QN8sAwZMjC3+F1YNcOMRkFETFL0NFwZ001J8pkYg3pQY+bsIdJit/+AzyRKqKPDQjOtzuFB+juRvRnyfDTGBfFPaflhiMVUoZ2anrIR+tYlZsbgW93JoZlCfUl6ovjv/bbVQ=
